@@ -29,90 +29,7 @@
 
     .highlight-box strong { color: var(--accent-3); }
 
-    /* Architecture visual */
-    .arch-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      padding: 8px 0;
-      font-family: 'JetBrains Mono', monospace;
-    }
 
-    .arch-row {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .arch-node {
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.4;
-      white-space: nowrap;
-    }
-
-    .arch-node-user   { background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); color:#67e8f9; }
-    .arch-node-tg     { background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#93c5fd; }
-    .arch-node-cf     {
-      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
-      border: 1px solid var(--border-hover);
-      color: var(--accent-3);
-      padding: 12px 22px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-    .arch-node-down   { background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); color:#6ee7b7; }
-
-    .arch-arr-h {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      padding: 0 4px;
-      gap: 2px;
-      min-width: 50px;
-    }
-
-    .arch-arr-h-line {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(to right, var(--accent-1), var(--accent-2));
-      opacity: 0.5;
-    }
-
-    .arch-arr-label {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .arch-arr-v {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      padding: 4px 0;
-    }
-
-    .arch-arr-v-line {
-      width: 1px;
-      height: 24px;
-      background: linear-gradient(to bottom, var(--accent-1), var(--accent-2));
-      opacity: 0.5;
-    }
-
-    .arch-arr-v-label {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-    }
 
     /* Keunggulan cards */
     .advantage-grid {
@@ -274,7 +191,7 @@
                 <div class="feature-body">
                   <div class="feature-title">Smart Content Handling</div>
                   <div class="feature-desc">
-                    Otomatis mendeteksi tipe file. Gambar (<code style="font-family:'JetBrains Mono',monospace;font-size:0.8em;color:var(--accent-3)">.jpg, .png, .webp, .gif</code>) dirender langsung di browser, sedangkan dokumen dan arsip diarahkan ke mode unduhan otomatis.
+                    Otomatis mendeteksi tipe file. Gambar akan dirender langsung di browser, sedangkan dokumen dan arsip akan langsung diarahkan ke mode unduhan otomatis.
                   </div>
                 </div>
               </div>
@@ -312,9 +229,9 @@
               <div class="feature-item">
                 <div class="feature-icon" aria-hidden="true">📏</div>
                 <div class="feature-body">
-                  <div class="feature-title">Strict Size Validation</div>
+                  <div class="feature-title">Validasi Ukuran File</div>
                   <div class="feature-desc">
-                    Dilengkapi fungsi kalkulasi ukuran file dinamis (konversi bytes ke KB/MB) untuk membatasi file maksimal <strong style="color:var(--accent-3)">20 MB</strong> demi efisiensi bandwidth.
+                    Dilengkapi pembatasan otomatis ukuran file hingga maksimal <strong style="color:var(--accent-3)">20 MB</strong> per file demi menjaga efisiensi dan kestabilan layanan.
                   </div>
                 </div>
               </div>
@@ -322,69 +239,7 @@
             </div>
           </div>
 
-          <!-- Arsitektur -->
-          <div class="glass-card">
-            <div class="glass-card-title">Arsitektur Sistem</div>
 
-            <div class="arch-visual" role="img" aria-label="Diagram alur sistem CloudLink Bot">
-
-              <!-- Row 1: User → Telegram → Cloudflare -->
-              <div class="arch-row">
-                <div class="arch-node arch-node-user">👤<br/>User Kirim File</div>
-                <div class="arch-arr-h">
-                  <div class="arch-arr-label">Kirim</div>
-                  <div class="arch-arr-h-line"></div>
-                  <div class="arch-arr-label">▶</div>
-                </div>
-                <div class="arch-node arch-node-tg">✈️<br/>Telegram Server</div>
-                <div class="arch-arr-h">
-                  <div class="arch-arr-label">Webhook POST</div>
-                  <div class="arch-arr-h-line"></div>
-                  <div class="arch-arr-label">▶</div>
-                </div>
-                <div class="arch-node arch-node-cf">☁️<br/>Cloudflare Workers<br/><span style="font-size:0.7em;opacity:0.7">(Edge Network V8)</span></div>
-              </div>
-
-              <!-- Vertical connector down from CF -->
-              <div style="display:flex; justify-content:flex-end; width:100%; padding-right: 1px;">
-                <div class="arch-arr-v" style="margin-right: calc(50% - 80px);">
-                  <div class="arch-arr-v-line"></div>
-                  <div style="font-size:0.65rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;">Fetch file_id</div>
-                  <div class="arch-arr-v-line"></div>
-                </div>
-              </div>
-
-              <!-- Row 2: Telegram API on right -->
-              <div class="arch-row" style="justify-content:flex-end;">
-                <div class="arch-node arch-node-tg" style="margin-right: calc(50% - 170px);">📡<br/>Telegram File API</div>
-              </div>
-
-              <!-- Vertical connector from Telegram API down -->
-              <div style="display:flex; justify-content:flex-end; width:100%; padding-right: 1px;">
-                <div class="arch-arr-v" style="margin-right: calc(50% - 80px);">
-                  <div class="arch-arr-v-line"></div>
-                  <div style="font-size:0.65rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;">Stream file</div>
-                  <div class="arch-arr-v-line"></div>
-                </div>
-              </div>
-
-              <!-- Row 3: Down to user -->
-              <div class="arch-row">
-                <div class="arch-node arch-node-down">⬇️<br/>User Unduh / Lihat</div>
-                <div class="arch-arr-h">
-                  <div class="arch-arr-label">◀</div>
-                  <div class="arch-arr-h-line"></div>
-                  <div class="arch-arr-label">Direct Link</div>
-                </div>
-                <div class="arch-node arch-node-cf" style="opacity:0.4">☁️<br/>Cloudflare Workers</div>
-              </div>
-
-            </div>
-
-            <div class="highlight-box" style="margin-top:20px;">
-              <strong>Zero Database</strong> — Sistem sepenuhnya stateless. Tidak ada penyimpanan data di server. Semua file diakses langsung melalui enkripsi <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em">file_id</code> bawaan Telegram yang sudah terenkripsi.
-            </div>
-          </div>
 
           <!-- Keunggulan -->
           <div class="glass-card">
@@ -461,47 +316,7 @@
             </div>
           </div>
 
-          <!-- Tech Stack -->
-          <div class="glass-card">
-            <div class="glass-card-title">Tech Stack</div>
-            <div class="tech-list">
-              <div class="tech-item">
-                <span class="tech-emoji">☁️</span>
-                <div class="tech-info">
-                  <div class="tech-name">Cloudflare Workers</div>
-                  <div class="tech-role">Runtime Environment</div>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-emoji">✈️</span>
-                <div class="tech-info">
-                  <div class="tech-name">Telegram Bot API</div>
-                  <div class="tech-role">Webhook Mode</div>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-emoji">🟨</span>
-                <div class="tech-info">
-                  <div class="tech-name">JavaScript (V8)</div>
-                  <div class="tech-role">Bahasa Pemrograman</div>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-emoji">🌐</span>
-                <div class="tech-info">
-                  <div class="tech-name">HTML5 &amp; CSS3</div>
-                  <div class="tech-role">Landing Page Serverless</div>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-emoji">🔒</span>
-                <div class="tech-info">
-                  <div class="tech-name">Stateless / No DB</div>
-                  <div class="tech-role">Enkripsi file_id Telegram</div>
-                </div>
-              </div>
-            </div>
-          </div>
+
 
           <!-- Project Info -->
           <div class="glass-card">
